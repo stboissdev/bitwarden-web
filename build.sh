@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+REGISTRY="localhost:5000"
+REPO="bitwarden-srp"
+REG_REPO="$REGISTRY/$REPO"
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo ""
@@ -10,12 +14,12 @@ then
     TAG=$2
     echo "# Pushing Web ($TAG)"
     echo ""
-    docker push bitwarden/web:$TAG
+    docker push $REG_REPO/web:$TAG
 elif [ $# -gt 1 -a "$1" == "tag" ]
 then
     TAG=$2
     echo "Tagging Web as '$TAG'"
-    docker tag bitwarden/web bitwarden/web:$TAG
+    docker tag $REPO/web $REG_REPO/web:$TAG
 else
     echo "# Building Web"
 
@@ -29,5 +33,5 @@ else
     echo ""
     echo "Building docker image"
     docker --version
-    docker build -t bitwarden/web $DIR/.
+    docker build -t bitwarden-srp/web $DIR/.
 fi
