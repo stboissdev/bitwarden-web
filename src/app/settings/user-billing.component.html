@@ -1,15 +1,23 @@
-<div class="page-header">
+<div class="page-header d-flex">
     <h1>
         {{'billing' | i18n}}
-        <small>
-            <i class="fa fa-spinner fa-spin text-muted" *ngIf="firstLoaded && loading" title="{{'loading' | i18n}}"></i>
-        </small>
     </h1>
+    <button (click)="load()" class="btn btn-sm btn-outline-primary ml-auto" *ngIf="firstLoaded" [disabled]="loading">
+        <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loading}"></i>
+        {{'refresh' | i18n}}
+    </button>
 </div>
 <i class="fa fa-spinner fa-spin text-muted" *ngIf="!firstLoaded && loading" title="{{'loading' | i18n}}"></i>
 <ng-container *ngIf="billing">
     <h2>{{(isCreditBalance ? 'accountCredit' : 'accountBalance') | i18n}}</h2>
-    <p>{{creditOrBalance | currency:'$'}}</p>
+    <p class="text-lg"><strong>{{creditOrBalance | currency:'$'}}</strong></p>
+    <p>{{'creditAppliedDesc' | i18n}}</p>
+    <button type="button" class="btn btn-outline-secondary" (click)="addCredit()" *ngIf="!showAddCredit">
+        {{'addCredit' | i18n}}
+    </button>
+    <app-add-credit [organizationId]="organizationId" (onAdded)="closeAddCredit(true)"
+        (onCanceled)="closeAddCredit(false)" *ngIf="showAddCredit">
+    </app-add-credit>
     <h2 class="spaced-header">{{'paymentMethod' | i18n}}</h2>
     <p *ngIf="!paymentSource">{{'noPaymentMethod' | i18n}}</p>
     <ng-container *ngIf="paymentSource">
@@ -50,8 +58,9 @@
     <button type="button" class="btn btn-outline-secondary" (click)="changePayment()" *ngIf="!showAdjustPayment">
         {{(paymentSource ? 'changePaymentMethod' : 'addPaymentMethod') | i18n}}
     </button>
-    <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null" [organizationId]="organizationId"
-        (onAdjusted)="closePayment(true)" (onCanceled)="closePayment(false)" *ngIf="showAdjustPayment">
+    <app-adjust-payment [currentType]="paymentSource != null ? paymentSource.type : null"
+        [organizationId]="organizationId" (onAdjusted)="closePayment(true)" (onCanceled)="closePayment(false)"
+        *ngIf="showAdjustPayment">
     </app-adjust-payment>
     <h2 class="spaced-header">{{'invoices' | i18n}}</h2>
     <p *ngIf="!invoices || !invoices.length">{{'noInvoices' | i18n}}</p>
@@ -60,7 +69,8 @@
             <tr *ngFor="let i of invoices">
                 <td>{{i.date | date:'mediumDate'}}</td>
                 <td>
-                    <a href="{{i.pdfUrl}}" target="_blank" rel="noopener" class="mr-2" title="{{'downloadInvoice' | i18n}}">
+                    <a href="{{i.pdfUrl}}" target="_blank" rel="noopener" class="mr-2"
+                        title="{{'downloadInvoice' | i18n}}">
                         <i class="fa fa-file-pdf-o"></i></a>
                     <a href="{{i.url}}" target="_blank" rel="noopener" title="{{'viewInvoice' | i18n}}">
                         {{'invoiceNumber' | i18n : i.number}}</a>
@@ -86,18 +96,23 @@
             <tr *ngFor="let t of transactions">
                 <td>{{t.createdDate | date:'mediumDate'}}</td>
                 <td>
-                    <span *ngIf="t.type === transactionType.Charge">{{'chargeNoun' | i18n}}</span>
-                    <span *ngIf="t.type === transactionType.Refund">{{'chargeRefund' | i18n}}</span>
+                    <span *ngIf="t.type === transactionType.Charge || t.type === transactionType.Credit">
+                        {{'chargeNoun' | i18n}}
+                    </span>
+                    <span *ngIf="t.type === transactionType.Refund">{{'refundNoun' | i18n}}</span>
                 </td>
                 <td>
-                    <i class="fa fa-fw" *ngIf="t.type === transactionType.Charge || t.type === transactionType.Refund"
-                        [ngClass]="{'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
-                                'fa-university': t.paymentMethodType === paymentMethodType.BankAccount,
-                                'fa-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal}"></i>
+                    <i class="fa fa-fw" *ngIf="t.paymentMethodType" [ngClass]="{
+                            'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
+                            'fa-university': t.paymentMethodType === paymentMethodType.BankAccount ||
+                                t.paymentMethodType === paymentMethodType.WireTransfer,
+                            'fa-bitcoin text-warning': t.paymentMethodType === paymentMethodType.BitPay,
+                            'fa-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal
+                        }"></i>
                     {{t.details}}
                 </td>
-                <td [ngClass]="{'text-strike': t.refunded}" title="{{(t.refunded ? 'refunded' : '') | i18n}}">{{t.amount
-                    | currency:'$'}}</td>
+                <td [ngClass]="{'text-strike': t.refunded}" title="{{(t.refunded ? 'refunded' : '') | i18n}}">
+                    {{t.amount | currency:'$'}}</td>
             </tr>
         </tbody>
     </table>

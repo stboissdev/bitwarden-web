@@ -1499,6 +1499,19 @@
     "message": "Aggiungi credito",
     "description": "Add more credit to your account's balance."
   },
+  "amount": {
+    "message": "Importo",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Il credito aggiunto apparirà sul tuo account dopo che il pagamento è stato completamente elaborato. Alcuni metodi di pagamento sono in ritardo e possono richiedere più tempo per il processo rispetto ad altri."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Assicurati che il tuo account abbia abbastanza credito disponibile per questo acquisto. Se il tuo account non ha abbastanza credito disponibile, il tuo metodo di pagamento predefinito sul file verrà utilizzato per la differenza. Puoi aggiungere credito al tuo account dalla pagina di fatturazione."
+  },
+  "creditAppliedDesc": {
+    "message": "Il credito del tuo account può essere utilizzato per effettuare acquisti. Ogni credito disponibile verrà automaticamente applicato alle fatture generate per questo account."
+  },
   "goPremium": {
     "message": "Passa a Premium",
     "description": "Another way of saying \"Get a premium membership\""

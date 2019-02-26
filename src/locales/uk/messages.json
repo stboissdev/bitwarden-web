@@ -1485,19 +1485,32 @@
     "message": "При завантаженні звіту сталася помилка. Спробуйте знову"
   },
   "billing": {
-    "message": "Billing"
+    "message": "Оплата"
   },
   "accountCredit": {
-    "message": "Account Credit",
+    "message": "Кредит рахунку",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "accountBalance": {
-    "message": "Account Balance",
+    "message": "Баланс рахунку",
     "description": "Financial term. In the case of Bitwarden, a positive balance means that you owe money, while a negative balance means that you have a credit (Bitwarden owes you money)."
   },
   "addCredit": {
-    "message": "Add Credit",
+    "message": "Додати кредит",
     "description": "Add more credit to your account's balance."
+  },
+  "amount": {
+    "message": "Сума",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Доданий кредит з'явиться на вашому рахунку після повної обробки платежу. Деякі способи оплати затримуються і можуть оброблятися довше, ніж інші."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Будь ласка, переконайтеся, що на вашому рахунку достатньо коштів для цієї покупки. Якщо на вашому рахунку недостатньо коштів, то різниця спишеться з використанням вашого типового способу оплати. Ви можете додати кошти до свого рахунку на сторінці Оплата."
+  },
+  "creditAppliedDesc": {
+    "message": "Кредит вашого рахунку можна використовувати для покупок. Будь-який наявний кредит автоматично використовуватиметься для рахунків, згенерованих для цього облікового запису."
   },
   "goPremium": {
     "message": "Перейти на Premium",
@@ -2056,7 +2069,7 @@
     "message": "Ви справді хочете видалити цю збірку?"
   },
   "editUser": {
-    "message": "Змінити користувача"
+    "message": "Редагувати користувача"
   },
   "inviteUser": {
     "message": "Запросити користувача"
@@ -2356,7 +2369,7 @@
     "message": "Тип користувача"
   },
   "groupAccess": {
-    "message": "Доступ до груп"
+    "message": "Доступ до групи"
   },
   "groupAccessUserDesc": {
     "message": "Змінюйте приналежність користувача до груп."

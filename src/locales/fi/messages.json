@@ -1499,6 +1499,19 @@
     "message": "Lisää luottoa",
     "description": "Add more credit to your account's balance."
   },
+  "amount": {
+    "message": "Summa",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Lisätty luotto näkyy tililläsi sen jälkeen, kun maksu on täysin käsitelty. Jotkin maksutavat ovat viivästettyjä ja osassa maksutavoista käsittely kestää kauemmin kuin muissa."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+  },
+  "creditAppliedDesc": {
+    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+  },
   "goPremium": {
     "message": "Päivitä premiumiin",
     "description": "Another way of saying \"Get a premium membership\""

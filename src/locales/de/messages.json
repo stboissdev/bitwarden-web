@@ -1499,6 +1499,19 @@
     "message": "Guthaben hinzufügen",
     "description": "Add more credit to your account's balance."
   },
+  "amount": {
+    "message": "Anzahl",
+    "description": "Dollar amount, or quantity."
+  },
+  "creditDelayed": {
+    "message": "Hinzugefügte Guthaben werden auf Ihrem Konto angezeigt, nachdem die Zahlung vollständig bearbeitet wurde. Einige Zahlungsmethoden brauchen mehr zeit zum bearbeiten als andere."
+  },
+  "makeSureEnoughCredit": {
+    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
+  },
+  "creditAppliedDesc": {
+    "message": "Your account's credit can be used to make purchases. Any available credit will be automatically applied towards invoices generated for this account."
+  },
   "goPremium": {
     "message": "Zu Premium wechseln",
     "description": "Another way of saying \"Get a premium membership\""
